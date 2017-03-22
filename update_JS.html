@@ -1,0 +1,74 @@
+ 
+   <script>
+   
+   /**
+   * Run initializations on sidebar load.
+   */
+ 
+$(function() {
+    $('#output').hide();
+    $('#updateResponse').hide();
+    });
+    
+$('#search').click(function() { 
+
+$('#output').empty()
+var searchterm= $("form input:text").val();
+    
+   google.script.run
+            .withSuccessHandler(function(filesFound) {
+            // Respond to success conditions here.
+              createCheckboxes(filesFound);
+             
+          })
+       .withFailureHandler(function(msg) {
+            // Respond to failure conditions here.
+            $('#output').show();
+             $('#output').html(msg);
+          })
+            .findFiles(searchterm) 
+  
+ });
+ 
+ function createCheckboxes(filesFound) {
+  
+   var container = $('#output');
+   var filesNumber = filesFound.length;
+
+ for (var f=0; f<filesNumber ; f++) {
+
+     var id = "file"+f;
+     $('<input />', { type: 'checkbox', id: id, value: filesFound[f].fileId }).appendTo(container);
+     $('<label />', { 'for': id, text: filesFound[f].fileName }).appendTo(container);
+     $('<br>').appendTo(container);
+     }
+
+   $('#output').show();
+
+ }
+ 
+  $('#update').click(function() {
+  
+ var checkedValues = $('input:checkbox:checked').map(function() {
+    return this.value;
+}).get();
+  
+  google.script.run
+            .withSuccessHandler(function(success) {
+            // Respond to success conditions here.
+              $('#updateResponse').show();
+             $('#updateResponse').html('Logs updated');
+          })
+       .withFailureHandler(function(msg) {
+            // Respond to failure conditions here.
+            $('#updateResponse').show();
+             $('#updateResponse').html(msg);
+          })
+            .tableToSpreadsheet(checkedValues)
+    });
+    
+    
+  
+    </script>
+
+

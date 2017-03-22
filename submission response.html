@@ -1,0 +1,16 @@
+<!-- Use a templated HTML printing scriptlet to import common stylesheet -->
+<?!= HtmlService.createHtmlOutputFromFile('Stylesheet').getContent(); ?>
+
+<!-- Below is the HTML code that defines the dialog element structure. -->
+<form id="title-form">
+<div class="response">
+  <div class="block" id="dialog-elements">
+  <br> <br>
+   Thank you for your submission. The database has now been updated.
+  </div>
+  <br>
+  <div class="block" id="dialog-button-bar">
+    <button onclick="window.close()">Close</button>
+  </div>
+  </div>
+</form>

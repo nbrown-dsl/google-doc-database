@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons1.css">
+    <base target="_top">
+  
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+  </head>
+  
+  <body>
+    <form id="myForm">
+    Title begins with:<br>
+      <input name="searchTerms" type="text" size="50" value="" /><br><br>
+      <input class = "action" id ="search" type="button" value="Search"/>
+    </form>
+    <br>
+    <div id="output">
+     </div>
+    <br><br>
+    
+    <input class = "action" id ="update" type="button" value="Update"/>&nbsp;&nbsp;<button name="cancel">Close</button>
+    
+    <br><br>
+    <div id="updateResponse">
+     </div>
+    
+   
+ </body>
+</html>
+
+<!-- Use a templated HTML printing scriptlet to import JavaScript -->
+<?!= HtmlService.createHtmlOutputFromFile('update_JS').getContent(); ?>  
+
